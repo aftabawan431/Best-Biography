@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "130015415803",
+    "project_id": "test-f2508",
+    "storage_bucket": "test-f2508.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130015415803:android:d84cc2874c431f01d2cf5e",
+        "android_client_info": {
+          "package_name": "com.biography1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130015415803-pp7b1pqd5esl8dh4f7s215e7bpeqd7nv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC7IJ2z-J-lcyc7fi3h_LANF5Pl6xbdHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130015415803-pp7b1pqd5esl8dh4f7s215e7bpeqd7nv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
