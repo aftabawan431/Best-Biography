@@ -7,7 +7,7 @@ class DataClass{
  }
  static Future<void> getAnswer()async{
    print('hre');
-   final response=await FirebaseFirestore.instance.collection('biographies').get();
+   final response=await FirebaseFirestore.instance.collection('biographies').orderBy('createdAt',descending: true).get();
    DataClass.list=[];
    for(var item in response.docs){
 
@@ -16,14 +16,9 @@ class DataClass{
        id: item.id,
        name: item.data()['name'],
        type:type,
-
      ));
    }
-
-
  }
-
-
 }
 
 

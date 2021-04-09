@@ -1,11 +1,8 @@
 import 'package:biography1/DataClass.dart';
-import 'package:biography1/Login_Screen.dart';
 import 'package:biography1/OtherBioScreen.dart';
 import 'package:biography1/see%20your%20writes.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'About.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
@@ -131,7 +128,6 @@ class _HomePageState extends State<HomePage> {
 
                 Expanded(
                   child: ListView.builder(
-                    reverse: true,
                     itemCount: DataClass.list.length,
                     itemBuilder: (BuildContext context,int index){
                       return Card(

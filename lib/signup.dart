@@ -1,4 +1,5 @@
 import 'package:biography1/FadeAnimation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
   String email='';
   String password='';
   bool showSpinner=false;
-  bool _RegisterLoadong= false;
+  bool _RegisterLoading= false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -66,12 +67,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       SizedBox(height: 20),
                       _buildTextField(passwordController, Icons.lock, 'Password(must be 6 characters)',true),
                       SizedBox(height: 30),
-                      if(_RegisterLoadong)
+                      if(_RegisterLoading)
                         CircularProgressIndicator(
                           valueColor: new AlwaysStoppedAnimation<Color>(Color(0xff25bcbb)),
 
                         ),
-                      if(!_RegisterLoadong)
+                      if(!_RegisterLoading)
                      FadeAnimation(2, MaterialButton(
 
                         elevation: 0,
@@ -79,12 +80,18 @@ class _SignupScreenState extends State<SignupScreen> {
                         height: 50,
                         onPressed: () async {
                           setState(() {
-                          _RegisterLoadong=true;
+                          _RegisterLoading=true;
                           });
                           print(nameController.text);
                           try{
-                            final user = await _auth.createUserWithEmailAndPassword(
-                                email: nameController.text, password: passwordController.text);
+                            var user = await _auth.createUserWithEmailAndPassword(
+                                email: nameController.text,
+                                password: passwordController.text);
+                            await FirebaseFirestore.instance.collection('users').add({
+                              "user":user.user?.email,
+                              "dollars":0
+
+                            });
                            print(user.user?.uid);
                             print(user.user?.email);
                             // if(user!=null){
@@ -103,7 +110,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             print(e);
                           }
                           setState(() {
-                            _RegisterLoadong=false;
+                            _RegisterLoading=false;
                           });
                           print(email);
                           print(password);

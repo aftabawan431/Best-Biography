@@ -74,76 +74,82 @@ bool showQuestion=false;
           ),
         ): Padding(
           padding: EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-          ElevatedButton(
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Color(0xff25bcbb) )),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+            ElevatedButton(
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Color(0xff25bcbb) )),
 
         onPressed: (){
 
-          setState(() {
-            showQuestion=!showQuestion;
-          });
+            setState(() {
+              showQuestion=!showQuestion;
+            });
         }, child: Text(showQuestion?"Biography ?":"Interview ?")),
-              Wrap(
-                children: [
-
-               ...list.map((e){
-
-                 var answer="";
-                 if(e.answer.length>0){
-
-
-                 if(e.answer[e.answer.length-1]!='.'){
-                   answer=e.answer+'. ';
-                 }else{
-                   answer=e.answer;
-                 }
-                 }
-
-               if(e.ifImg){
-
-                 return Column(
-
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     if(showQuestion)
-                      Text("Q:${e.question}",style: TextStyle(fontSize: 25,color: Color(0xff25bcbb)),),
-                     Text(answer,style: TextStyle(fontSize: 25),),
-                     Container(
-                         height: 200,
-                         width: double.infinity,
-                         child:
-                         CachedNetworkImage(
-                           fit: BoxFit.contain,
-
-                           imageUrl: e.imgUrl,
-                           progressIndicatorBuilder: (context, url, downloadProgress) =>
-                               CircularProgressIndicator(value: downloadProgress.progress,
-                                 strokeWidth: 2.0,
-                                 valueColor: new AlwaysStoppedAnimation<Color>(Color(0xff25bcbb)),
-                 ),
-                           errorWidget: (context, url, error) => Icon(Icons.error),
-                         ),
-                         // Image.network(e.imgUrl,fit: BoxFit.contain,)
-                     )
-                   ],
-                 );
-               }else{
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Wrap(
                   children: [
-                    if(showQuestion&&answer.length>0)
-                    Text('Q${e.question.length}:${e.question}',style: TextStyle(fontSize: 25,color: Color(0xff25bcbb)),),
-                    Text(answer,style: TextStyle(fontSize: 25)),
+
+                 ...list.map((e){
+
+                   var answer="";
+                   if(e.answer.length>0){
+
+
+                   if(e.answer[e.answer.length-1]!='.'){
+                     answer=e.answer+'. ';
+                   }else{
+                     answer=e.answer;
+                   }
+                   }
+
+                 if(e.ifImg){
+
+                   return Column(
+
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+                       if(showQuestion)
+                        Text("Q:${e.question}",style: TextStyle(fontSize: 25,color: Color(0xff25bcbb)),),
+                       Text(answer,style: TextStyle(fontSize: 25),),
+                       Container(
+                           height: 200,
+                           width: double.infinity,
+                           child:
+                           CachedNetworkImage(
+                             fit: BoxFit.contain,
+
+                             imageUrl: e.imgUrl,
+                             progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                 SizedBox(
+                                   height: 300.0,
+                                   width: 300.0,
+                                   child: CircularProgressIndicator(value: downloadProgress.progress,
+                                     strokeWidth: 2.0,
+                                     valueColor: new AlwaysStoppedAnimation<Color>(Color(0xff25bcbb)),
+                   ),
+                                 ),
+                             errorWidget: (context, url, error) => Icon(Icons.error),
+                           ),
+                   //         Image.network(e.imgUrl,fit: BoxFit.contain,)
+                       )
+                     ],
+                   );
+                 }else{
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if(showQuestion&&answer.length>0)
+                      Text('Q${e.question.length}:${e.question}',style: TextStyle(fontSize: 25,color: Color(0xff25bcbb)),),
+                      Text(answer,style: TextStyle(fontSize: 25)),
+                    ],
+                  );
+                 }
+                 }).toList()
                   ],
-                );
-               }
-               }).toList()
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         )
       ),

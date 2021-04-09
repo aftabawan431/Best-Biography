@@ -1,8 +1,8 @@
 import 'package:biography1/answer.dart';
-
+import 'package:biography1/payment screen.dart';
+import 'Paypal/PaypalPayment.dart';
 import 'QuestionsScreen.dart';
 import 'package:flutter/material.dart';
-import 'Questions.dart';
 enum SingingCharacter { yourself, herself,himself }
 
 class About extends StatefulWidget {
@@ -102,7 +102,16 @@ class _AboutState extends State<About> {
                       Answers.answers=[];
 
                       if(_character==SingingCharacter.herself){
-                       Navigator.of(context).push(MaterialPageRoute(builder:(ctx)=>QuestionsScreen("herSelf",_nameController.text)));
+                        Navigator.of(context).push(MaterialPageRoute(builder:(ctx)=> PaypalPayment(
+                          onFinish: (number) async {
+
+                            // payment done
+                            print('order id: '+number);
+
+                          },
+                        ),));
+
+                        // Navigator.of(context).push(MaterialPageRoute(builder:(ctx)=>QuestionsScreen("herSelf",_nameController.text)));
                        // print(completelist);
                         print("her self is selected");
                       }else if(_character==SingingCharacter.yourself){

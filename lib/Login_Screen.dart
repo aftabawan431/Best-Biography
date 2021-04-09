@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'signup.dart';
-import 'package:provider/provider.dart';
 import 'HomePage.dart';
 
 class LoginScreen extends StatefulWidget {

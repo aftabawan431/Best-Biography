@@ -1,8 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'Login_Screen.dart';
-import 'package:provider/provider.dart';
+
 import 'package:biography1/FadeAnimation.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 

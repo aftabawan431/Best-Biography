@@ -18,7 +18,12 @@ static int getTotalQuestion(){
  static String getQuestionsText(){
   return  questionsofHub[questionNo].question;
 }
+static previousQuestion(){
+ questionNo--;
+}
+
 static nextQuestion(){
+
  questionNo++;
 }
 bool questionsEnded(){
